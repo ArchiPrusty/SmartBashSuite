@@ -1,0 +1,33 @@
+#!/bin/bash
+# -------------------------------------------------------------------
+# Script Name : email_alert.sh
+# Description : Sends email alerts if CPU or memory usage exceeds limits.
+# Author      : Archi Prusty
+# -------------------------------------------------------------------
+
+LOG_FILE="../logs/email_alert.log"
+ALERT_EMAIL="siyaprusty01@gmail.com"   # <-- Replace with your email
+CPU_THRESHOLD=80
+MEM_THRESHOLD=80
+
+# Get current CPU and memory usage
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+MEM_USAGE=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+
+# Prepare alert message
+ALERT_MSG=""
+
+if (( ${CPU_USAGE%.*} > CPU_THRESHOLD )); then
+  ALERT_MSG+="⚠️ High CPU Usage Detected: ${CPU_USAGE}%\n"
+fi
+
+if (( ${MEM_USAGE%.*} > MEM_THRESHOLD )); then
+  ALERT_MSG+="⚠️ High Memory Usage Detected: ${MEM_USAGE}%\n"
+fi
+
+if [ -n "$ALERT_MSG" ]; then
+  echo -e "$ALERT_MSG" | mail -s "🚨 System Alert: Resource Limit Exceeded" "$ALERT_EMAIL"
+  echo "$(date) - Alert sent to $ALERT_EMAIL" >> $LOG_FILE
+else
+  echo "$(date) - System running normally (CPU: ${CPU_USAGE}%, MEM: ${MEM_USAGE}%)" >> $LOG_FILE
+fi
