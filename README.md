@@ -46,5 +46,5 @@ These scripts help in maintaining system health automatically and reducing manua
 1. Clone the repository:
     git clone https://github.com/ArchiPrusty/SmartBashSuite.git
     cd SmartBashSuite/scripts
-2. Make scripts executable:
+3. Make scripts executable:
     chmod +x *.sh
