@@ -1,0 +1,12 @@
+----------------------------------------
+SYSTEM INFORMATION REPORT - Sat Nov  8 02:19:55 PM EST 2025
+----------------------------------------
+Operating System  : Ubuntu 22.04.5 LTS
+Kernel Version     : 6.8.0-60-generic
+System Uptime      : up 37 minutes
+CPU Model          :                            AMD Ryzen 5 5600H with Radeon Graphics
+Total Memory       : 7.1Gi
+Used Memory        : 2.2Gi
+Disk Usage:
+/dev/nvme0n1p6   73G   27G   43G  39% /
+/dev/nvme0n1p1  256M   92M  165M  36% /boot/efi
